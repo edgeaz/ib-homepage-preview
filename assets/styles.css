@@ -261,7 +261,10 @@ main p a:not(.btn):not(.link), main li a:not(.btn):not(.link), .prose a:not(.btn
 footer .brand img{height:54px}
 /* --- Smaller, refined hero portrait (was too large) --- */
 @media(min-width:861px){
-  .hero .wrap{grid-template-columns:1.15fr .85fr}
+  .hero .wrap{grid-template-columns:1.15fr .85fr;align-items:stretch}
+  .hero-cta{grid-column:1 / -1;margin-top:6px}
+  .hero-photo{aspect-ratio:auto;align-self:stretch;min-height:0}
+  .hero-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .hero-photo{max-width:410px;margin-left:auto}
 }
 @media(max-width:860px){.hero-photo{max-width:360px}}
