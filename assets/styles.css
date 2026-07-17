@@ -1,3 +1,6 @@
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/inter.woff2') format('woff2')}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:500 700;font-display:swap;src:url('fonts/playfair.woff2') format('woff2')}
+
 /* Internally Balanced — shared design system (Option B). Used by every staging page. */
 :root{
   --ivory:#F7F2ED; --cream:#FFF9F5; --blush:#E5C8BE; --blush-soft:#EFE0D9;
@@ -250,3 +253,23 @@ footer a:focus-visible{outline:2px solid var(--champ-light);outline-offset:2px}
 main p a:not(.btn):not(.link), main li a:not(.btn):not(.link), .prose a:not(.btn),
 .callout a:not(.btn), .res p a:not(.btn), .crumbs a{
   text-decoration:underline;text-underline-offset:2px}
+
+/* --- Real logo in brand slots --- */
+.brand img{height:38px;width:auto;display:block}
+.m-menu-top .brand img{height:34px}
+footer .brand img{height:40px}
+/* --- Smaller, refined hero portrait (was too large) --- */
+@media(min-width:861px){
+  .hero .wrap{grid-template-columns:1.3fr .7fr}
+  .hero-photo{max-width:320px;margin-left:auto}
+}
+@media(max-width:860px){.hero-photo{max-width:300px}}
+/* --- Provider-section image: cap height so it isn't oversized --- */
+.prov figure img{max-height:460px}
+
+/* --- Testimonials --- */
+.quote{margin:0;display:flex;flex-direction:column}
+.quote p{font-size:16px;line-height:1.62;margin:0}
+.quote figcaption{margin-top:16px;font-weight:700;color:var(--clay);font-size:14.5px}
+.quote figcaption span{display:block;color:var(--taupe);font-weight:500;font-family:var(--serif);font-style:italic;font-size:15px;margin-top:3px}
+.quote .stars{color:var(--champ);letter-spacing:2px;margin-bottom:10px;font-size:14px}
