@@ -261,10 +261,10 @@ main p a:not(.btn):not(.link), main li a:not(.btn):not(.link), .prose a:not(.btn
 footer .brand img{height:54px}
 /* --- Smaller, refined hero portrait (was too large) --- */
 @media(min-width:861px){
-  .hero .wrap{grid-template-columns:1.3fr .7fr}
-  .hero-photo{max-width:320px;margin-left:auto}
+  .hero .wrap{grid-template-columns:1.5fr .5fr}
+  .hero-photo{max-width:250px;margin-left:auto}
 }
-@media(max-width:860px){.hero-photo{max-width:300px}}
+@media(max-width:860px){.hero-photo{max-width:240px}}
 /* --- Provider-section image: cap height so it isn't oversized --- */
 .prov figure img{max-height:460px}
 
@@ -287,3 +287,9 @@ footer .brand img{height:54px}
 @media(max-width:820px){.provider-card figure{max-width:280px;margin:0 auto}}
 
 @media(max-width:600px){.brand img{height:40px}.m-menu-top .brand img{height:38px}}
+
+/* Provider page: tighter section rhythm + framed, smaller Ilona photo */
+.provider-page section{padding:54px 0}
+.ilona-photo{margin:0;max-width:320px;border-radius:16px;overflow:hidden;border:1px solid var(--champ);box-shadow:0 30px 60px -34px rgba(51,37,34,.45)}
+.ilona-photo img{width:100%;display:block;aspect-ratio:5/6;object-fit:cover;object-position:50% 12%}
+@media(max-width:820px){.ilona-photo{max-width:280px;margin:0 auto}}
