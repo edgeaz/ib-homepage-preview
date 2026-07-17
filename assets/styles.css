@@ -273,3 +273,9 @@ footer .brand img{height:40px}
 .quote figcaption{margin-top:16px;font-weight:700;color:var(--clay);font-size:14.5px}
 .quote figcaption span{display:block;color:var(--taupe);font-weight:500;font-family:var(--serif);font-style:italic;font-size:15px;margin-top:3px}
 .quote .stars{color:var(--champ);letter-spacing:2px;margin-bottom:10px;font-size:14px}
+
+/* --- Blog imagery --- */
+.post .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card-img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px;margin-bottom:16px;display:block}
+.article-hero{margin-top:-34px;margin-bottom:8px}
+.article-hero img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;display:block;border:1px solid var(--champ);box-shadow:0 30px 60px -34px rgba(51,37,34,.5)}
