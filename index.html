@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internally Balanced — Homepage color direction (A / B / C)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- DESIGN DIRECTION PREVIEW — not the live site. Palette grounded in the Plated reference
+     (warm ivory / blush / dusty rose / champagne bronze / deep cocoa). Toggle A/B/C top-right.
+     Real provider + office photos pulled from the current site CDN for realism. -->
+<style>
+  :root{
+    --ivory:#F7F2ED; --cream:#FFF9F5; --blush:#E5C8BE; --blush-soft:#EFE0D9;
+    --rose:#BE8F82; --terra:#A97468; --mauve:#8C665F; --champ:#B88A67;
+    --copper:#A86F54; --taupe:#715651; --cocoa:#332522; --cocoa-2:#29211F;
+    --text:#29211F; --light:#FFF9F5; --border:#DCC5BC;
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    /* per-option knobs (defaults = Option B) */
+    --page:var(--ivory); --alt:var(--blush-soft); --band:var(--cocoa);
+    --band-text:var(--light); --accent:var(--copper); --hero:var(--ivory); --hero-text:var(--text);
+  }
+  /* OPTION A — light ivory-dominant, blush + bronze accents */
+  body.optA{--page:var(--ivory);--alt:var(--cream);--band:var(--blush);--band-text:var(--cocoa);--accent:var(--champ);--hero:var(--cream);--hero-text:var(--text)}
+  /* OPTION B — balanced ivory + dusty rose, deep cocoa nav */
+  body.optB{--page:var(--ivory);--alt:var(--blush-soft);--band:var(--cocoa);--band-text:var(--light);--accent:var(--copper);--hero:var(--ivory);--hero-text:var(--text)}
+  /* OPTION C — dramatic deep cocoa sections, champagne-bronze accents */
+  body.optC{--page:var(--ivory);--alt:var(--cocoa);--band:var(--cocoa);--band-text:var(--light);--accent:var(--champ);--hero:var(--cocoa);--hero-text:var(--light)}
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--page);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em;margin:0}
+  .eyebrow{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;cursor:pointer;border:0;font-family:var(--sans);font-weight:600;font-size:15.5px;padding:14px 26px;border-radius:6px;text-decoration:none;transition:transform .2s,background .2s,color .2s,border-color .2s}
+  .btn:focus-visible{outline:3px solid var(--copper);outline-offset:3px}
+  .btn-primary{background:var(--cocoa);color:var(--light)}
+  .btn-primary:hover{background:var(--mauve);transform:translateY(-1px)}
+  .btn-portal{background:var(--terra);color:var(--cocoa);font-weight:700}
+  .btn-portal:hover{background:var(--rose);transform:translateY(-1px)}
+  .btn-outline{background:transparent;color:var(--cocoa);border:1.5px solid var(--cocoa)}
+  .btn-outline:hover{background:var(--blush-soft)}
+  body.optC .btn-outline{color:var(--light);border-color:rgba(255,249,245,.5)}
+  body.optC .btn-outline:hover{background:rgba(255,249,245,.08);border-color:var(--champ)}
+
+  /* palette toggle */
+  .toggle{position:fixed;top:14px;right:14px;z-index:200;background:var(--cocoa);color:var(--light);border-radius:10px;padding:8px;display:flex;gap:6px;box-shadow:0 12px 30px -10px rgba(0,0,0,.5);font-family:var(--sans)}
+  .toggle b{align-self:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:0 6px;opacity:.7;font-weight:600}
+  .toggle button{cursor:pointer;border:0;background:rgba(255,249,245,.12);color:var(--light);font-weight:700;font-size:13px;padding:8px 12px;border-radius:6px}
+  .toggle button.on{background:var(--champ);color:var(--cocoa)}
+
+  /* utility bar */
+  .util{background:var(--cocoa-2);color:var(--light)}
+  .util .wrap{display:flex;justify-content:flex-end;gap:26px;align-items:center;height:40px;font-size:13.5px}
+  .util a{text-decoration:none;opacity:.9;display:inline-flex;gap:6px;align-items:center}
+  .util a:hover{opacity:1;color:var(--champ)}
+  .util .sep{width:1px;height:15px;background:rgba(255,249,245,.2)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:150;background:var(--cocoa);color:var(--light);border-bottom:1px solid rgba(184,138,103,.35)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--light);text-decoration:none;letter-spacing:.01em}
+  .brand span{color:var(--champ)}
+  .navlinks{display:flex;gap:24px;align-items:center}
+  .navlinks a{color:var(--light);text-decoration:none;font-size:15px;opacity:.9}
+  .navlinks a:hover{opacity:1;color:var(--champ)}
+  .nav .cta{display:flex;gap:10px;align-items:center}
+  .nav .btn{padding:11px 18px}
+  @media(max-width:1000px){.navlinks a:not(.btn),.util{display:none}.nav{height:62px}}
+
+  section{padding:84px 0}
+  .sec-head{max-width:680px}
+  .sec-head.center{margin:0 auto;text-align:center}
+  .sec-head h2{font-size:clamp(28px,3.6vw,42px);margin:10px 0 0}
+  .sec-head p{color:var(--taupe);font-size:18px;margin:14px 0 0}
+  body.optC .alt .sec-head p, body.optC .band .sec-head p{color:rgba(255,249,245,.72)}
+
+  /* hero */
+  .hero{background:var(--hero);color:var(--hero-text);position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center;padding-top:70px;padding-bottom:80px}
+  .hero h1{font-size:clamp(34px,4.6vw,56px);max-width:15ch}
+  .hero p.lede{font-size:20px;max-width:46ch;margin:22px 0 30px;color:var(--hero-text);opacity:.9}
+  .hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-photo{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 60px -30px rgba(51,37,34,.5);border:1px solid var(--border)}
+  .hero-photo img{width:100%;height:100%;object-fit:cover}
+  .hero .badge{position:absolute;left:18px;bottom:18px;background:var(--cream);color:var(--cocoa);border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.4;box-shadow:0 12px 30px -12px rgba(0,0,0,.4)}
+  .hero .badge b{font-family:var(--serif);font-size:15px}
+  @media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:34px}}
+
+  /* credential strip */
+  .cred{background:var(--band);color:var(--band-text)}
+  .cred .wrap{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;align-items:center;padding:22px 28px;font-size:15px}
+  .cred .dot{width:5px;height:5px;border-radius:50%;background:var(--champ)}
+  .cred b{font-family:var(--serif);font-weight:600}
+
+  /* services grid */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .card{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:28px 26px;transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:var(--text);display:block}
+  .card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -26px rgba(51,37,34,.4);border-color:var(--champ)}
+  .card .ic{width:42px;height:42px;border-radius:9px;background:var(--blush-soft);display:flex;align-items:center;justify-content:center;color:var(--copper);margin-bottom:16px}
+  .card h3{font-size:21px}
+  .card p{margin:8px 0 0;font-size:15px;color:var(--taupe)}
+  .card .more{margin-top:14px;font-size:14px;font-weight:600;color:var(--copper)}
+  @media(max-width:860px){.svc-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+
+  /* alt section (something's not right) */
+  .alt{background:var(--alt)}
+  body.optC .alt{color:var(--light)}
+  .alt .quote{font-family:var(--serif);font-size:clamp(26px,3.4vw,40px);max-width:20ch;line-height:1.2}
+  .alt .two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:800px){.alt .two{grid-template-columns:1fr;gap:24px}}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px}
+  .step .n{font-family:var(--serif);font-size:30px;color:var(--copper)}
+  .step h3{font-size:19px;margin:8px 0 6px}
+  .step p{margin:0;font-size:15px;color:var(--taupe)}
+  .step{border-top:2px solid var(--champ);padding-top:16px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
+
+  /* provider */
+  .prov .two{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
+  .prov img{border-radius:14px;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--border)}
+  .prov h2{font-size:clamp(26px,3.2vw,38px)}
+  .prov ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+  .prov li{padding-left:26px;position:relative;color:var(--taupe)}
+  .prov li:before{content:"";position:absolute;left:0;top:9px;width:12px;height:2px;background:var(--copper)}
+  @media(max-width:800px){.prov .two{grid-template-columns:1fr;gap:26px}}
+
+  /* patient resources band */
+  .res{background:var(--band);color:var(--band-text)}
+  .res .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+  .res .rcard{background:rgba(255,249,245,.06);border:1px solid rgba(184,138,103,.4);border-radius:12px;padding:30px}
+  body.optA .res .rcard{background:rgba(51,37,34,.05);border-color:rgba(51,37,34,.15)}
+  .res h3{font-size:23px}
+  .res p{opacity:.85;margin:10px 0 20px;font-size:15.5px}
+  @media(max-width:760px){.res .grid{grid-template-columns:1fr}}
+
+  /* office / final CTA */
+  .final{text-align:center}
+  .final h2{font-size:clamp(30px,4vw,46px);max-width:18ch;margin:0 auto}
+  .final .addr{color:var(--taupe);margin:16px auto 26px;font-size:17px}
+
+  footer{background:var(--cocoa-2);color:var(--light);padding:56px 0 30px}
+  .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+  footer h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);margin:0 0 14px;font-family:var(--sans);font-weight:700}
+  footer a{color:rgba(255,249,245,.82);text-decoration:none;display:block;margin-bottom:8px;font-size:14.5px}
+  footer a:hover{color:var(--champ)}
+  .foot-bottom{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,249,245,.14);font-size:13px;color:rgba(255,249,245,.6);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media(max-width:820px){.foot{grid-template-columns:1fr 1fr}}
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body class="optB">
+
+<div class="toggle" role="group" aria-label="Color option">
+  <b>Palette</b>
+  <button data-opt="A" onclick="setOpt('A')">A · Ivory</button>
+  <button data-opt="B" class="on" onclick="setOpt('B')">B · Balanced</button>
+  <button data-opt="C" onclick="setOpt('C')">C · Cocoa</button>
+</div>
+
+<div class="util">
+  <div class="wrap">
+    <a href="https://internallybalanced.md-hq.com/" target="_blank" rel="noopener noreferrer">Patient Portal ↗</a>
+    <span class="sep"></span>
+    <a href="https://us.fullscript.com/welcome/ibleaman" target="_blank" rel="noopener noreferrer">Fullscript Dispensary ↗</a>
+    <span class="sep"></span>
+    <a href="tel:+14808638778">480‑863‑8778</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">Internally <span>Balanced</span></a>
+    <nav class="navlinks">
+      <a href="#">Services</a>
+      <a href="#">Women's Health</a>
+      <a href="#">Men's Health</a>
+      <a href="#">Our Provider</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+      <span class="cta">
+        <a class="btn btn-portal" href="https://internallybalanced.md-hq.com/" target="_blank" rel="noopener noreferrer">Patient Portal</a>
+        <a class="btn btn-primary" href="#">Book Consultation</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Scottsdale, Arizona</p>
+      <h1 style="margin-top:16px">Personalized Hormone Therapy &amp; Functional Medicine in Scottsdale, AZ</h1>
+      <p class="lede">Root‑cause, individualized care for hormones, menopause, thyroid, PCOS, men's health and medical weight loss — led by Ilona Y. Bleaman, PA‑C, MHPE.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#">Book a Consultation</a>
+        <a class="btn btn-outline" href="https://internallybalanced.md-hq.com/" target="_blank" rel="noopener noreferrer">Patient Portal ↗</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://img1.wsimg.com/isteam/ip/8c79009f-c45d-4656-89ad-757434a8c2c8/Bleaman_Ilona-104.jpg" alt="Ilona Y. Bleaman, PA-C, MHPE — provider at Internally Balanced in Scottsdale">
+      <div class="badge"><b>Ilona Y. Bleaman, PA‑C, MHPE</b><br>Founder &amp; Provider</div>
+    </div>
+  </div>
+</section>
+
+<div class="cred">
+  <div class="wrap">
+    <span><b>Ilona Y. Bleaman, PA‑C, MHPE</b></span><span class="dot"></span>
+    <span>Personalized, root‑cause care</span><span class="dot"></span>
+    <span>Scottsdale · 8985 E Bell Rd, Ste 210</span><span class="dot"></span>
+    <span>480‑863‑8778</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow">What we do</p>
+      <h2>Care built around your biology, not a template</h2>
+      <p>Every plan starts with listening and thorough evaluation. Explore the areas we focus on.</p>
+    </div>
+    <div class="svc-grid">
+      <a class="card" href="#"><div class="ic">✦</div><h3>Women's Hormone Therapy</h3><p>Personalized hormone optimization for energy, mood, sleep and vitality.</p><div class="more">Learn more →</div></a>
+      <a class="card" href="#"><div class="ic">✦</div><h3>Menopause &amp; Perimenopause</h3><p>Relief and clarity through the hormonal transitions of midlife.</p><div class="more">Learn more →</div></a>
+      <a class="card" href="#"><div class="ic">✦</div><h3>Men's Hormone Therapy</h3><p>Evaluation and treatment for low energy, focus and hormonal balance.</p><div class="more">Learn more →</div></a>
+      <a class="card" href="#"><div class="ic">✦</div><h3>PCOS &amp; Thyroid</h3><p>Root‑cause evaluation of common hormonal and metabolic conditions.</p><div class="more">Learn more →</div></a>
+      <a class="card" href="#"><div class="ic">✦</div><h3>Medical Weight Loss</h3><p>Sustainable, medically supervised approaches to metabolic health.</p><div class="more">Learn more →</div></a>
+      <a class="card" href="#"><div class="ic">✦</div><h3>Functional &amp; Gut Health</h3><p>Nutrition, gut health and functional medicine that address the whole person.</p><div class="more">Learn more →</div></a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow">Why patients come to us</p>
+      <p class="quote">"Nothing is wrong, but something is not right."</p>
+    </div>
+    <div>
+      <p style="margin:0;font-size:18px;color:inherit;opacity:.9">If your labs are "normal" but you don't feel like yourself — fatigue, weight changes, mood, sleep, or a sense that something's off — you deserve to be heard. We take the time to look deeper and build a plan around <em>you</em>.</p>
+      <div style="margin-top:24px"><a class="btn btn-primary" href="#">Book a Consultation</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head center"><p class="eyebrow">How personalized care works</p><h2>A thoughtful, step‑by‑step process</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Listen</h3><p>A thorough conversation about your history, symptoms and goals.</p></div>
+      <div class="step"><div class="n">02</div><h3>Evaluate</h3><p>Appropriate testing to understand what's really going on.</p></div>
+      <div class="step"><div class="n">03</div><h3>Personalize</h3><p>A plan designed around your biology and your life.</p></div>
+      <div class="step"><div class="n">04</div><h3>Support</h3><p>Ongoing monitoring and adjustment as you progress.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="prov">
+  <div class="wrap two">
+    <img src="https://img1.wsimg.com/isteam/ip/8c79009f-c45d-4656-89ad-757434a8c2c8/_A1_1401.jpg" alt="Internally Balanced office interior in Scottsdale, Arizona">
+    <div>
+      <p class="eyebrow">Your provider</p>
+      <h2 style="margin-top:12px">Ilona Y. Bleaman, PA‑C, MHPE</h2>
+      <p style="color:var(--taupe);font-size:18px;margin-top:14px">Founder of Internally Balanced, dedicated to personalized, root‑cause hormone and functional‑medicine care.</p>
+      <ul>
+        <li>Certified in Advanced Bio‑Identical Hormone Therapy <em>(verification required)</em></li>
+        <li>Master of Health Professions Education (MHPE)</li>
+        <li>Focus on women's &amp; men's hormone health, thyroid, PCOS and metabolic care</li>
+      </ul>
+      <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="#">Meet Ilona</a>
+        <a class="btn btn-outline" href="#">Book a Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="res">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow" style="color:var(--champ)">Existing patients</p><h2 style="margin-top:10px">Your resources, one tap away</h2></div>
+    <div class="grid">
+      <div class="rcard">
+        <h3>Secure Patient Portal</h3>
+        <p>Access secure messages, forms and available patient information through the Internally Balanced Patient Portal.</p>
+        <a class="btn btn-portal" href="https://internallybalanced.md-hq.com/" target="_blank" rel="noopener noreferrer">Open Patient Portal ↗</a>
+      </div>
+      <div class="rcard">
+        <h3>Fullscript Dispensary</h3>
+        <p>Access practitioner‑recommended supplements through the Internally Balanced Fullscript dispensary.</p>
+        <a class="btn btn-outline" href="https://us.fullscript.com/welcome/ibleaman" target="_blank" rel="noopener noreferrer">Visit Fullscript ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <p class="eyebrow">Scottsdale, Arizona</p>
+    <h2 style="margin-top:14px">Ready to feel like yourself again?</h2>
+    <p class="addr">8985 East Bell Road, Suite 210 · Scottsdale, AZ 85260 · 480‑863‑8778</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-primary" href="#">Book a Consultation</a>
+      <a class="btn btn-outline" href="tel:+14808638778">Call 480‑863‑8778</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand" style="margin-bottom:12px">Internally <span>Balanced</span></div>
+        <p style="color:rgba(255,249,245,.7);max-width:32ch;margin:0;font-size:14.5px">Personalized hormone therapy &amp; functional medicine in Scottsdale, Arizona.</p>
+      </div>
+      <div><h4>Care</h4><a href="#">Women's Health</a><a href="#">Men's Health</a><a href="#">Menopause</a><a href="#">Thyroid &amp; PCOS</a><a href="#">Weight Loss</a></div>
+      <div><h4>Patients</h4><a href="https://internallybalanced.md-hq.com/" target="_blank" rel="noopener noreferrer">Patient Portal ↗</a><a href="https://us.fullscript.com/welcome/ibleaman" target="_blank" rel="noopener noreferrer">Fullscript ↗</a><a href="#">Book Consultation</a><a href="#">Patient Resources</a></div>
+      <div><h4>Visit</h4><a href="#">8985 E Bell Rd, Ste 210</a><a href="#">Scottsdale, AZ 85260</a><a href="tel:+14808638778">480‑863‑8778</a><a href="mailto:info@internallybalanced.com">info@internallybalanced.com</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Internally Balanced</span>
+      <span>Privacy · Terms · Medical Disclaimer · Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setOpt(o){
+    document.body.className='opt'+o;
+    document.querySelectorAll('.toggle button').forEach(b=>b.classList.toggle('on', b.dataset.opt===o));
+  }
+</script>
+</body>
+</html>
