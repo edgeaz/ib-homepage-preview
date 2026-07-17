@@ -261,10 +261,10 @@ main p a:not(.btn):not(.link), main li a:not(.btn):not(.link), .prose a:not(.btn
 footer .brand img{height:54px}
 /* --- Smaller, refined hero portrait (was too large) --- */
 @media(min-width:861px){
-  .hero .wrap{grid-template-columns:1.35fr .65fr}
-  .hero-photo{max-width:320px;margin-left:auto}
+  .hero .wrap{grid-template-columns:1.15fr .85fr}
+  .hero-photo{max-width:410px;margin-left:auto}
 }
-@media(max-width:860px){.hero-photo{max-width:300px}}
+@media(max-width:860px){.hero-photo{max-width:360px}}
 /* --- Provider-section image: cap height so it isn't oversized --- */
 .prov figure img{max-height:460px}
 
