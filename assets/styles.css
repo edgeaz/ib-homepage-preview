@@ -255,9 +255,9 @@ main p a:not(.btn):not(.link), main li a:not(.btn):not(.link), .prose a:not(.btn
   text-decoration:underline;text-underline-offset:2px}
 
 /* --- Real logo in brand slots --- */
-.brand img{height:38px;width:auto;display:block}
-.m-menu-top .brand img{height:34px}
-footer .brand img{height:40px}
+.brand img{height:52px;width:auto;display:block}
+.m-menu-top .brand img{height:44px}
+footer .brand img{height:54px}
 /* --- Smaller, refined hero portrait (was too large) --- */
 @media(min-width:861px){
   .hero .wrap{grid-template-columns:1.3fr .7fr}
