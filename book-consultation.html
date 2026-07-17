@@ -122,6 +122,78 @@
   <!-- VERIFICATION REQUIRED: online booking platform URL if one exists -->
 </div></section>
 
+<section id="request"><div class="wrap narrow">
+  <div class="sec-head"><p class="eyebrow">Request an appointment</p><h2>Send a message to get started</h2></div>
+  <p style="max-width:60ch;margin:0 0 24px;color:var(--taupe)">Prefer to start with a message? Complete the form below and the office will follow up. For medical questions, existing patients should use the secure Patient Portal.</p>
+  <div>
+      <!-- PRODUCTION: wire submission to a server-side handler (Next.js API route) with validation,
+           sanitization, rate limiting, Cloudflare Turnstile, office notification + visitor confirmation,
+           and a submission reference ID. Use a vendor with a signed BAA if PHI is possible. Do NOT claim
+           HIPAA compliance until the full workflow is verified. This static preview validates client-side. -->
+      <form class="form" id="contactForm" novalidate aria-describedby="formIntro">
+        <p id="formIntro" style="margin-top:0;color:var(--taupe);font-size:15px">Fields marked <span class="req">*</span> are required.</p>
+        <div class="row">
+          <div><label for="fn">First name <span class="req">*</span></label><input id="fn" name="first_name" autocomplete="given-name" required aria-required="true"><p class="err" id="fn-err" aria-live="polite"></p></div>
+          <div><label for="ln">Last name <span class="req">*</span></label><input id="ln" name="last_name" autocomplete="family-name" required aria-required="true"><p class="err" id="ln-err" aria-live="polite"></p></div>
+        </div>
+        <div class="row">
+          <div><label for="em">Email <span class="req">*</span></label><input id="em" name="email" type="email" autocomplete="email" required aria-required="true"><p class="err" id="em-err" aria-live="polite"></p></div>
+          <div><label for="ph">Phone <span class="req">*</span></label><input id="ph" name="phone" type="tel" autocomplete="tel" required aria-required="true"><p class="err" id="ph-err" aria-live="polite"></p></div>
+        </div>
+        <label for="reason">Reason for contacting <span class="req">*</span></label>
+        <select id="reason" name="reason" required aria-required="true">
+          <option value="">Please choose…</option>
+          <option>New patient question</option>
+          <option>Existing patient question</option>
+          <option>Hormone therapy</option>
+          <option>Menopause or perimenopause care</option>
+          <option>Men's hormone health</option>
+          <option>PCOS treatment</option>
+          <option>Thyroid treatment</option>
+          <option>Medical weight loss</option>
+          <option>Functional medicine</option>
+          <option>Hair loss or PRP</option>
+          <option>Aesthetic services</option>
+          <option>Billing or administrative question</option>
+          <option>Media or professional inquiry</option>
+          <option>Other</option>
+        </select>
+        <p class="err" id="reason-err" aria-live="polite"></p>
+
+        <fieldset><legend style="font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--taupe);text-transform:none">Preferred contact method <span class="req">*</span></legend>
+          <div class="radios" role="radiogroup" aria-required="true">
+            <label><input type="radio" name="prefer" value="Phone" required> Phone</label>
+            <label><input type="radio" name="prefer" value="Email"> Email</label>
+            <label><input type="radio" name="prefer" value="Text"> Text</label>
+          </div><p class="err" id="prefer-err" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset><legend style="font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--taupe)">New or existing patient? <span class="req">*</span></legend>
+          <div class="radios" role="radiogroup" aria-required="true">
+            <label><input type="radio" name="patient" value="New" required> New patient</label>
+            <label><input type="radio" name="patient" value="Existing"> Existing patient</label>
+          </div><p class="err" id="patient-err" aria-live="polite"></p>
+        </fieldset>
+
+        <label for="best">Best time to contact <span style="font-weight:400;color:var(--taupe)">(optional)</span></label>
+        <input id="best" name="best_time" placeholder="e.g. weekday mornings">
+
+        <div class="notice">Please do not include detailed medical information, diagnoses, prescriptions, laboratory results or other sensitive health information in this form. Existing patients should use the secure <a class="link ext" href="https://internallybalanced.md-hq.com/" target="_blank" rel="noopener noreferrer">Patient Portal</a> for medical communication.</div>
+        <label for="msg">Message <span class="req">*</span></label>
+        <textarea id="msg" name="message" rows="5" required aria-required="true"></textarea><p class="err" id="msg-err" aria-live="polite"></p>
+
+        <label class="check"><input type="checkbox" name="consent" id="consent" required aria-required="true"> <span>I understand this form is not for medical emergencies or sensitive health information, and I consent to being contacted by Internally Balanced about my inquiry. <span class="req">*</span></span></label>
+        <p class="err" id="consent-err" aria-live="polite"></p>
+        <label class="check"><input type="checkbox" name="sms_consent" id="sms"> <span>Optional: I consent to receive text messages about my inquiry. Message/data rates may apply.</span></label>
+
+        <div class="notice" style="background:#f6e3df;color:#7a2c1d">This form is not monitored for medical emergencies. If you are experiencing a medical emergency, call <strong>911</strong>.</div>
+
+        <button class="btn btn-primary" type="submit">Send Message</button>
+        <div class="formmsg" id="formMsg" role="status" aria-live="assertive" hidden></div>
+      </form>
+    </div>
+</div></section>
+
 <section style="text-align:center"><div class="wrap narrow">
   <div class="sec-head center"><p class="eyebrow">We're here to help</p><h2>Have a question first?</h2><p>If you're not sure where to begin, reach out, we're happy to point you in the right direction.</p></div>
   <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px">
@@ -147,5 +219,33 @@
 </div></footer>
 <div id="preview-only"><div class="panel"><span class="tag">Preview</span><a href="index.html">Home</a><a href="responsive.html">Responsive</a></div></div>
 <script src="assets/site.js" defer></script>
+<script>
+(function(){
+  var f=document.getElementById('contactForm'); if(!f) return;
+  var msg=document.getElementById('formMsg');
+  function setErr(id,text){var el=document.getElementById(id),err=document.getElementById(id+'-err');if(err)err.textContent=text||'';if(el)el.setAttribute('aria-invalid',text?'true':'false');}
+  function emailOk(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var firstBad=null, ok=true;
+    function req(id,cond,text){setErr(id,cond?'':text);if(cond===false&&!firstBad)firstBad=document.getElementById(id);if(!cond)ok=false;}
+    req('fn',f.first_name.value.trim().length>0,'Please enter your first name.');
+    req('ln',f.last_name.value.trim().length>0,'Please enter your last name.');
+    req('em',emailOk(f.email.value.trim()),'Please enter a valid email address.');
+    req('ph',f.phone.value.trim().length>=7,'Please enter a phone number.');
+    req('reason',f.reason.value!=='','Please choose a reason.');
+    req('msg',f.message.value.trim().length>0,'Please enter a message.');
+    // radios + consent
+    var prefer=f.querySelector('input[name=prefer]:checked'); setErr('prefer',prefer?'':'Please choose a preferred contact method.'); if(!prefer){ok=false;if(!firstBad)firstBad=f.querySelector('input[name=prefer]');}
+    var patient=f.querySelector('input[name=patient]:checked'); setErr('patient',patient?'':'Please tell us if you are a new or existing patient.'); if(!patient){ok=false;if(!firstBad)firstBad=f.querySelector('input[name=patient]');}
+    setErr('consent',f.consent.checked?'':'Please check the consent box to continue.'); if(!f.consent.checked){ok=false;if(!firstBad)firstBad=f.consent;}
+    if(!ok){ msg.hidden=false; msg.className='formmsg bad'; msg.textContent='Please fix the highlighted fields and try again.'; if(firstBad)firstBad.focus(); return; }
+    // PRODUCTION: POST to secure server-side handler here (with Turnstile token). Preview shows success only.
+    msg.hidden=false; msg.className='formmsg ok';
+    msg.textContent='Thank you for contacting Internally Balanced. Your message has been received. Our office will contact you during normal business hours.';
+    f.reset(); msg.focus && msg.setAttribute('tabindex','-1'); msg.focus();
+  });
+})();
+</script>
 </body>
 </html>
