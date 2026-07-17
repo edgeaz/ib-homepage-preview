@@ -178,7 +178,7 @@ section{padding:80px 0}
 .disc .wrap{padding:26px 28px;border-top:1px solid var(--border);font-size:13px;color:var(--taupe);max-width:920px;line-height:1.7}
 footer{background:var(--cocoa-2);color:var(--light);padding:58px 0 30px}
 .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
-footer h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--champ-light);margin:0 0 14px;font-weight:700}
+footer h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--champ-light);margin:0 0 14px;font-weight:700}
 footer a{color:rgba(255,249,245,.84);text-decoration:none;display:block;margin-bottom:9px;font-size:14.5px}
 footer a:hover{color:var(--champ-light)}
 footer a:focus-visible{outline:2px solid var(--champ-light);outline-offset:2px}
@@ -243,3 +243,10 @@ footer a:focus-visible{outline:2px solid var(--champ-light);outline-offset:2px}
 .page-hero.on-dark > .wrap > *{max-width:60ch}
 @media (max-width:820px){ .page-hero::after{width:100%;opacity:.35} }
 @media (max-width:540px){ .page-hero::after{display:none} }
+
+/* --- Accessibility fixes (Lighthouse: contrast, in-text links) --- */
+.res .btn-outline{color:var(--light);border-color:rgba(255,249,245,.55)}
+.res .btn-outline:hover{background:rgba(255,249,245,.1);border-color:var(--champ-light)}
+main p a:not(.btn):not(.link), main li a:not(.btn):not(.link), .prose a:not(.btn),
+.callout a:not(.btn), .res p a:not(.btn), .crumbs a{
+  text-decoration:underline;text-underline-offset:2px}
