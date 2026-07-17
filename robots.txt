@@ -1,0 +1,4 @@
+# STAGING PREVIEW — blocked from indexing. Production robots.txt will allow crawling
+# and reference https://internallybalanced.com/sitemap.xml
+User-agent: *
+Disallow: /
