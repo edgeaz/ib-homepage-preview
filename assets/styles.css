@@ -265,7 +265,7 @@ footer .brand img{height:54px}
   .hero-cta{grid-column:1 / -1;margin-top:6px}
   .hero-photo{aspect-ratio:auto;align-self:stretch;min-height:0}
   .hero-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hero-photo{max-width:410px;margin-left:auto}
+  .hero-photo{max-width:410px;width:100%;justify-self:end}
 }
 @media(max-width:860px){.hero-photo{max-width:360px}}
 /* --- Provider-section image: cap height so it isn't oversized --- */
